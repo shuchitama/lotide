@@ -19,20 +19,27 @@ const eqArrays = function(array1, array2) {
 const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length !== Object.keys(object2).length) {
     return false;
-  };
+  }
   for (const key in object1) {
-    if (Array.isArray(object1[key])) {console.log(`[${object1[key]}] is an array!`)}
-    if (object2[key] !== object1[key]) {return false};
+    if (Array.isArray(object1[key])) {
+      if (eqArrays(object1[key], object2[key]) === false) {
+        return false;
+      }
+    } else {
+      if (object2[key] !== object1[key]) {
+        return false;
+      }
+    }
   }
   return true;
 };
 
 // TESTING PRIMITIVE VALUES ONLY
-// const ab = { a: "1", b: "2"};
-// const abc = { a: "1", b: "2", c: "3" };
-// const bca = { b: "2", c: "3", a: "1" };
-// assertEqual(eqObjects(abc, bca), true); 
-// assertEqual(eqObjects(ab, abc), false);
+const ab = { a: "1", b: "2"};
+const abc = { a: "1", b: "2", c: "3" };
+const bca = { b: "2", c: "3", a: "1" };
+assertEqual(eqObjects(abc, bca), true);
+assertEqual(eqObjects(ab, abc), false);
 
 // TESTING PRIMITIVE AND ARRAY VALUES
 const cd = { c: "1", d: ["2", 3] };
