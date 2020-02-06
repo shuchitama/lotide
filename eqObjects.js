@@ -12,11 +12,14 @@ const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length !== Object.keys(object2).length) {
     return false;
   };
+  for (const key in object1) {
+    if (object2[key] !== object1[key]) {return false};
+  }
+  return true;
 };
 
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); 
-
+const ab = { a: "1", b: "2"};
 const abc = { a: "1", b: "2", c: "3" };
+const bca = { b: "2", c: "3", a: "1" };
+assertEqual(eqObjects(abc, bca), true); 
 assertEqual(eqObjects(ab, abc), false);
