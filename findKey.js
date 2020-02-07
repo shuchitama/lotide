@@ -7,10 +7,15 @@ const assertEqual = function(actual, expected) {
 };
 
 const findKey = function(object, callback) {
-
+  for (const key in object) {
+    console.log(key);
+    if (callback(object[key])) {
+      return key;
+    }
+  }
 };
 
-const obj1 = 
+const obj1 =
   {
     "Blue Hill": { stars: 1 },
     "Akaleri":   { stars: 3 },
@@ -20,4 +25,19 @@ const obj1 =
     "Akelarre":  { stars: 3 }
   };
 
-asserEqual(findKey(Obj1, x => x.stars === 2), "noma");
+assertEqual(findKey(obj1, x => x.stars === 2), "noma");
+
+console.log("----");
+
+const obj2 = {
+  sci_fi: "Doctor Who",
+  comedy: "Brooklyn Nine-Nine",
+  drama:  "The Wire"
+};
+
+assertEqual(findKey(obj2, x => x === "Sherlock"), undefined);
+
+console.log("----");
+
+const obj3 = {};
+assertEqual(findKey(obj3, x => x < 0), undefined);
