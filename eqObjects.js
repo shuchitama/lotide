@@ -26,15 +26,15 @@ const eqObjects = function(object1, object2) {
         return false;
       }
     } else if (typeof object1[key] === 'object') {
-      if (object2[key] !== undefined && 
-          typeof object2[key] === 'object' && 
+      if (object2[key] !== undefined &&
+          typeof object2[key] === 'object' &&
           !Array.isArray(object2[key])) {
         if (eqObjects(object1[key], object2[key]) === false) {
           return false;
         }
       } else {
-        return false
-      };
+        return false;
+      }
     } else {
       if (object2[key] !== object1[key]) {
         return false;
@@ -66,18 +66,18 @@ assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { b: 2, a: { z: 1 } }), true);
 
 // Test: both have nests, but not the same inner object
 assertEqual(eqObjects(
-  { 
-    a: { y: 0, z: 1 }, 
-    b: 2 
-  }, 
-  { a: { z: 1 }, 
-    b: 2 
+  {
+    a: { y: 0, z: 1 },
+    b: 2
+  },
+  { a: { z: 1 },
+    b: 2
   }
-  ), false);
+), false);
 
 assertEqual(eqObjects(
   { a: { y: 0, z: 1 },
-    b: 2 }, 
-  { a: 1, 
+    b: 2 },
+  { a: 1,
     b: 2 }
-    ), false);
+), false);
