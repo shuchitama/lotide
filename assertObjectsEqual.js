@@ -23,6 +23,16 @@ const eqObjects = function(object1, object2) {
       if (eqArrays(object1[key], object2[key]) === false) {
         return false;
       }
+    } else if (typeof object1[key] === 'object') {
+      if (object2[key] !== undefined &&
+          typeof object2[key] === 'object' &&
+          !Array.isArray(object2[key])) {
+        if (eqObjects(object1[key], object2[key]) === false) {
+          return false;
+        }
+      } else {
+        return false;
+      }
     } else {
       if (object2[key] !== object1[key]) {
         return false;
