@@ -1,4 +1,3 @@
-const assertEqual = require('./assertEqual');
 const eqArrays = require('./eqArray');
 
 const eqObjects = function(object1, object2) {
@@ -30,41 +29,3 @@ const eqObjects = function(object1, object2) {
 };
 
 module.exports = eqObjects;
-
-// // TESTING PRIMITIVE VALUES ONLY
-const ab = { a: "1", b: "2"};
-const abc = { a: "1", b: "2", c: "3" };
-const bca = { b: "2", c: "3", a: "1" };
-assertEqual(eqObjects(abc, bca), true);
-assertEqual(eqObjects(ab, abc), false);
-
-// // TESTING PRIMITIVE AND ARRAY VALUES
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-const cd2 = { c: "1", d: ["2", 3, 4] };
-eqObjects(cd, dc); // => true
-eqObjects(cd, cd2); // => false
-assertEqual(eqObjects(cd, dc), true);
-assertEqual(eqObjects(cd, cd2), false);
-
-// TESTING NESTED OBJECTS
-// Test : one nest, order changed
-assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { b: 2, a: { z: 1 } }), true);
-
-// Test: both have nests, but not the same inner object
-assertEqual(eqObjects(
-  {
-    a: { y: 0, z: 1 },
-    b: 2
-  },
-  { a: { z: 1 },
-    b: 2
-  }
-), false);
-
-assertEqual(eqObjects(
-  { a: { y: 0, z: 1 },
-    b: 2 },
-  { a: 1,
-    b: 2 }
-), false);
