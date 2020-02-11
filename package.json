@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@shuchita/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "mini clone of the lodash (https://lodash.com) library ",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -19,7 +19,10 @@
     "type": "git",
     "url": "git+https://github.com/shuchitama/lotide.git"
   },
-  "author": "",
+  "author": { 
+    "name": "Shuchita Mahey",
+    "email": "shuchita@live.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shuchitama/lotide/issues"
